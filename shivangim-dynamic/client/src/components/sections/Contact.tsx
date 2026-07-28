@@ -1,15 +1,21 @@
 /**
  * FAQ + lead capture.
  *
- * The form POSTs to /api/leads, which stores the enquiry server-side. If the
- * API is unreachable (static hosting, cold start, offline) it falls back to
- * opening a pre-filled email so the lead is never silently lost.
+ * Submission is tried in three steps, stopping at the first that works:
+ *
+ *   1. Netlify Forms — POST url-encoded to "/" with `form-name`. Netlify stores
+ *      the submission and emails it on. Needs the hidden static form in
+ *      index.html (Netlify only registers forms it can see in built HTML) and
+ *      form detection enabled on the project.
+ *   2. `POST /api/leads` — the Express API, for when this runs on a Node host.
+ *   3. A pre-filled mailto — last resort, so an enquiry is never lost silently.
+ *
+ * Whichever path runs, the visitor sees the same confirmation.
  */
 import { useState } from "react";
 import { toast } from "sonner";
 import Reveal from "@/components/Reveal";
 import { BRAND, CONTACT, FAQS } from "@/content/site";
-
 type Status = "idle" | "sending" | "sent" | "fallback";
 
 interface LeadPayload {
@@ -18,6 +24,46 @@ interface LeadPayload {
   company: string;
   business: string;
   message: string;
+}
+
+/** The form name registered by the hidden static form in index.html. */
+const NETLIFY_FORM_NAME = "lead";
+
+/** Netlify Forms: url-encoded POST to the site root. */
+async function submitToNetlify(lead: LeadPayload): Promise<boolean> {
+  const body = new URLSearchParams({
+    "form-name": NETLIFY_FORM_NAME,
+    name: lead.name,
+    email: lead.email,
+    company: lead.company,
+    business: lead.business,
+    message: lead.message,
+  });
+
+  try {
+    const res = await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: body.toString(),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
+/** The Express API, for Node hosting. */
+async function submitToApi(lead: LeadPayload): Promise<boolean> {
+  try {
+    const res = await fetch("/api/leads", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(lead),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
 }
 
 function mailtoFor(lead: LeadPayload) {
@@ -55,34 +101,33 @@ function LeadForm() {
 
     setStatus("sending");
 
-    // The single-file preview build has no API behind it — show the success
+    // The single-file preview build has nothing behind it — show the success
     // state rather than throwing the visitor into their mail client.
     if ((window as { __PREVIEW__?: boolean }).__PREVIEW__) {
       setTimeout(() => {
         setStatus("sent");
         form.reset();
-        toast.success("Preview only — on the live site this posts to the lead API.");
+        toast.success("Preview only — on the live site this is delivered to your inbox.");
       }, 500);
       return;
     }
 
-    try {
-      const res = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(lead),
-      });
-      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+    const delivered = (await submitToNetlify(lead)) || (await submitToApi(lead));
+
+    if (delivered) {
       setStatus("sent");
       form.reset();
       toast.success("Got it. I'll come back with where the pain looks like it's sitting.");
-    } catch {
-      setStatus("fallback");
-      toast.message("Opening your email app instead", {
-        description: "The form couldn't reach the server, so I've drafted the email for you.",
-      });
-      window.location.href = mailtoFor(lead);
+      return;
     }
+
+    // Nothing accepted the submission — hand the visitor a drafted email so the
+    // enquiry still reaches an inbox.
+    setStatus("fallback");
+    toast.message("Opening your email app instead", {
+      description: "The form couldn't reach the server, so I've drafted the email for you.",
+    });
+    window.location.href = mailtoFor(lead);
   };
 
   if (status === "sent") {
