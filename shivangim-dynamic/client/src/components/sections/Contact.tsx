@@ -16,6 +16,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import Reveal from "@/components/Reveal";
 import { BRAND, CONTACT, FAQS } from "@/content/site";
+
 type Status = "idle" | "sending" | "sent" | "fallback";
 
 interface LeadPayload {

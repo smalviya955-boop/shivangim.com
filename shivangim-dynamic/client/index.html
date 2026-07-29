@@ -25,6 +25,16 @@
   </head>
 
   <body>
+    <!--
+      Netlify Forms target.
+
+      Netlify parses forms out of the built HTML at deploy time, and it cannot see
+      a form that React renders at runtime. So the contact form is declared here
+      statically (hidden, never shown to a visitor) purely so Netlify registers
+      the "lead" form and its fields. The real form in Contact.tsx posts to it.
+
+      Keep the field names here in sync with the ones in Contact.tsx.
+    -->
     <form name="lead" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
       <input type="text" name="name" />
       <input type="email" name="email" />
@@ -33,6 +43,7 @@
       <textarea name="message"></textarea>
       <input type="text" name="bot-field" />
     </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

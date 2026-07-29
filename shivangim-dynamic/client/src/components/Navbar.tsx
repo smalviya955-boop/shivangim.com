@@ -1,14 +1,31 @@
 /**
  * Sticky nav with scroll-spy. Sections come from NAV_SECTIONS in content/site.ts,
  * so adding a section to the page adds it to the nav.
+ *
+ * Two cases to handle beyond plain scrolling:
+ *  - A section can be absent from the page (the testimonials section hides itself
+ *    until there is a testimonial), so links are filtered to what actually exists.
+ *  - On a case study page none of them exist, so the links route home to the
+ *    anchor instead of scrolling nowhere.
  */
 import { useEffect, useState } from "react";
+import { useLocation } from "wouter";
 import { BRAND, NAV_SECTIONS } from "@/content/site";
+import { goToSection } from "@/lib/goToSection";
 
 export default function Navbar() {
+  const [location, navigate] = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeId, setActiveId] = useState<string>(NAV_SECTIONS[0].id);
+  const [present, setPresent] = useState<string[]>([]);
+
+  const onHome = location === "/";
+
+  // Which sections are actually on this page right now.
+  useEffect(() => {
+    setPresent(NAV_SECTIONS.filter((s) => document.getElementById(s.id)).map((s) => s.id));
+  }, [location]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -35,12 +52,14 @@ export default function Navbar() {
 
     targets.forEach((t) => observer.observe(t));
     return () => observer.disconnect();
-  }, []);
+  }, [location, present.length]);
 
   const go = (id: string) => {
     setMobileOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    goToSection(id, navigate);
   };
+
+  const links = onHome ? NAV_SECTIONS.filter((s) => present.includes(s.id)) : NAV_SECTIONS;
 
   return (
     <header
@@ -78,7 +97,7 @@ export default function Navbar() {
         </button>
 
         <ul className="hidden lg:flex items-center gap-1">
-          {NAV_SECTIONS.filter((s) => s.id !== "contact").map((link) => (
+          {links.filter((s) => s.id !== "contact").map((link) => (
             <li key={link.id}>
               <button
                 onClick={() => go(link.id)}
@@ -118,7 +137,7 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="lg:hidden bg-white/95 backdrop-blur-xl border-b border-border px-4 pb-4">
           <ul className="flex flex-col gap-1 pt-2">
-            {NAV_SECTIONS.map((link) => (
+            {links.map((link) => (
               <li key={link.id}>
                 <button
                   onClick={() => go(link.id)}

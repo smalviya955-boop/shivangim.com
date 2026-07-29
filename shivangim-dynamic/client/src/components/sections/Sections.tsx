@@ -3,6 +3,7 @@
  * selector), process, offers, and proof. All copy comes from content/site.ts.
  */
 import { useState } from "react";
+import { Link } from "wouter";
 import Reveal from "@/components/Reveal";
 import { CountStat } from "@/components/CountFigure";
 import { Doodle } from "@/components/Doodle";
@@ -304,9 +305,26 @@ export function ProofSection() {
                   </li>
                 ))}
               </ul>
+
+              {p.slug && (
+                <Link
+                  href={`/case/${p.slug}`}
+                  className="inline-block mt-4 text-xs font-semibold hover:underline"
+                  style={{ color: p.accent }}
+                >
+                  Read the full story &rarr;
+                </Link>
+              )}
             </div>
           ))}
         </div>
+
+        <Reveal delay={80}>
+          <p className="mt-8 text-sm text-warm-gray max-w-2xl leading-relaxed">
+            Each case study walks through where the client was, what signal I found, what I built,
+            and what changed — with references available if you want to hear it from them.
+          </p>
+        </Reveal>
       </div>
     </section>
   );

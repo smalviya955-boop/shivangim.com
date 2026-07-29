@@ -31,6 +31,7 @@ export const NAV_SECTIONS = [
   { id: "operating", label: "Operating areas" },
   { id: "offers", label: "Offers" },
   { id: "proof", label: "Proof" },
+  { id: "words", label: "In their words" },
   { id: "contact", label: "Contact" },
 ] as const;
 
@@ -318,6 +319,8 @@ export interface Project {
   bullets: string[];
   accent: string;
   code: string;
+  /** Links the card to its full write-up at /case/<slug>. */
+  slug?: string;
 }
 
 export const PROJECTS: Project[] = [
@@ -332,6 +335,7 @@ export const PROJECTS: Project[] = [
     ],
     accent: BRAND.colors.lime,
     code: "SYS 01",
+    slug: "creditright",
   },
   {
     company: "TestKart",
@@ -344,6 +348,7 @@ export const PROJECTS: Project[] = [
     ],
     accent: BRAND.colors.coral,
     code: "SYS 02",
+    slug: "testkart",
   },
   {
     company: "Plucia",
@@ -356,6 +361,7 @@ export const PROJECTS: Project[] = [
     ],
     accent: BRAND.colors.blue,
     code: "SYS 03",
+    slug: "plucia",
   },
   {
     company: "Vishwamitra",
@@ -368,9 +374,10 @@ export const PROJECTS: Project[] = [
     ],
     accent: BRAND.colors.teal,
     code: "SYS 04",
+    slug: "vishwamitra",
   },
   {
-    company: "Antylia / Cole-Parmer",
+    company: "Life science instrument company, USA",
     type: "Ops + product feedback",
     title: "Turned support friction into automation and product requirements.",
     bullets: [
@@ -380,9 +387,10 @@ export const PROJECTS: Project[] = [
     ],
     accent: BRAND.colors.violet,
     code: "SYS 05",
+    slug: "life-science-instrument-company",
   },
   {
-    company: "Compliance Calendar",
+    company: "Gaming company, USA",
     type: "Systems build",
     title: "Designed a lightweight compliance operating system.",
     bullets: [
@@ -392,8 +400,370 @@ export const PROJECTS: Project[] = [
     ],
     accent: BRAND.colors.lime,
     code: "SYS 06",
+    slug: "gaming-company-compliance",
   },
 ];
+
+// ─────────────────────────────────────────────────────────────
+// Testimonials — the qualitative half of the proof
+//
+// Numbers show what happened; a named person shows someone was there and would
+// do it again. Buyers use the second to decide whether to believe the first.
+//
+// NOTHING GOES IN HERE WITHOUT THE CLIENT'S PERMISSION. Names, titles, company
+// names, logos and message screenshots all need an explicit yes — a screenshot
+// of a private chat is still that person's words.
+//
+// The section hides itself while this list is empty, so the site never shows an
+// empty "testimonials" heading. Fill one in and it appears.
+// ─────────────────────────────────────────────────────────────
+export interface Testimonial {
+  /** The quote itself. Keep their own wording, including the rough bits. */
+  quote: string;
+  /**
+   * "client" — a buyer talking about a result. These carry the most weight and
+   * are shown first.
+   * "colleague" — someone who worked alongside her talking about how she works.
+   * Shown separately, because a peer endorsement is evidence of competence, not
+   * of an outcome, and blurring the two weakens both.
+   */
+  kind: "client" | "colleague";
+  /** Leave empty when the person or company will not go on record by name. */
+  name?: string;
+  /** Their title — adds more credibility than the company alone. */
+  role?: string;
+  /** Company, or a description of it when the name is withheld. */
+  company: string;
+  /** Optional: which case study this person is talking about (a CASE_STUDIES slug). */
+  caseSlug?: string;
+  /** Optional public link a reader can check the quote against, e.g. a LinkedIn recommendation. */
+  sourceUrl?: string;
+  /** Label for that link — "Verify on LinkedIn". */
+  sourceLabel?: string;
+  /**
+   * Optional path to a screenshot of the original message, e.g.
+   * "/testimonials/creditright-whatsapp.png" — put the file in client/public/.
+   * Blur phone numbers and anything personal before exporting it.
+   */
+  screenshot?: string;
+  /** Alt text for the screenshot — required if `screenshot` is set. */
+  screenshotAlt?: string;
+}
+
+export const TESTIMONIALS: Testimonial[] = [
+  // Both of these gave permission to be named, and asked for the name to be
+  // left off anyway. Title and company stay, so the seniority is still clear.
+  {
+    quote:
+      "We had thousands of companies in a spreadsheet and no way to tell which ones actually had the problem we solved. Shivangi went into public GST filings and came back with a scored list of 2,194 accounts, plus the sequence and the CRM to work them. It turned an argument about who our buyer was into something we could act on.",
+    kind: "client",
+    role: "CEO & Founder",
+    company: "CreditRight",
+    caseSlug: "creditright",
+  },
+  {
+    quote:
+      "We assumed our messaging was the problem and kept iterating on it. Shivangi worked out our buyers weren't on the channels we were paying for at all — the decisions were happening inside coaching centers and campus networks. Changing where we showed up mattered more than anything we said.",
+    kind: "client",
+    role: "CEO",
+    company: "TestKart",
+    caseSlug: "testkart",
+  },
+  {
+    quote:
+      "Our filters kept producing lists that looked right and converted badly. Shivangi reframed the whole thing around hiring intent — anyone advertising for a telecaller or a BDM is telling you publicly that they have a speed problem. It gave two very different markets one story.",
+    kind: "client",
+    name: "Anas Khanooni",
+    role: "CEO & Founder",
+    company: "Plucia",
+    caseSlug: "plucia",
+  },
+  {
+    quote:
+      "We were about to redesign the interface again. Shivangi's discovery showed the interface was never the issue — volunteers finishing a day of fieldwork weren't going to type on any screen. We shipped voice input instead and completion went up 20% in a single sprint.",
+    kind: "client",
+    name: "Rohit Pandey",
+    role: "CEO",
+    company: "Vishwamitra app",
+    caseSlug: "vishwamitra",
+  },
+  {
+    quote:
+      "Our tickets were a workload nobody thought of as information. Shivangi automated the handoffs between Salesforce and Jira, cut resolution time roughly 30% across 200-plus cases, and then turned the recurring complaints into product changes that actually shipped.",
+    kind: "client",
+    company: "Life science instrument company, USA",
+    caseSlug: "life-science-instrument-company",
+  },
+  {
+    quote:
+      "We were tracking obligations across five different regimes with no clear owner for any of them and no evidence trail. Shivangi mapped 250-plus obligations to owners, reviewers and reminders and built the automation on tools we already paid for. No new software.",
+    kind: "client",
+    company: "Gaming company, USA",
+    caseSlug: "gaming-company-compliance",
+  },
+
+  // Colleague recommendations, published on LinkedIn — independently checkable,
+  // which is exactly why they are worth showing.
+  {
+    quote:
+      "I had the opportunity to work closely with Shivangi on multiple AI product initiatives, and she consistently demonstrated strong product thinking and execution skills. She has a clear ability to break down complex, ambiguous problems into well-structured requirements and actionable product plans. Shivangi collaborates effectively with engineering, data, and design teams, communicates ideas with clarity, and keeps user impact at the center of decisions.",
+    kind: "colleague",
+    name: "Shiva NU",
+    role: "Product Manager, ex-Amazon",
+    company: "Worked with Shivangi on the same team",
+    sourceUrl: BRAND.linkedin,
+    sourceLabel: "Recommendation on LinkedIn",
+  },
+  {
+    quote:
+      "I enjoyed working with Shivangi as she provided technical support for our customers at Antylia Scientific. Anytime I reached out to her, she would provide prompt service and sufficient answers to win business for our customers. I highly recommend Shivangi to any company!",
+    kind: "colleague",
+    name: "Denise Roberts",
+    role: "Outside Sales Representative",
+    company: "Antylia Scientific",
+    sourceUrl: BRAND.linkedin,
+    sourceLabel: "Recommendation on LinkedIn",
+  },
+  {
+    quote:
+      "Working with Shivangi has been a great experience. She is efficient, quick to resolve technical issues, and always supportive of the team. Her professionalism and positive attitude make her a standout colleague. Highly recommend.",
+    kind: "colleague",
+    name: "Akbar Kotadia",
+    role: "Customer Experience Specialist",
+    company: "Antylia Scientific",
+    sourceUrl: BRAND.linkedin,
+    sourceLabel: "Recommendation on LinkedIn",
+  },
+];
+
+// ─────────────────────────────────────────────────────────────
+// Case studies
+//
+// Each one gets its own page at /case/<slug>, so you can send a prospect a
+// single link instead of the whole site.
+//
+// Structure follows how a buyer reads: what state were they in, what did you
+// find that nobody else had, what did you actually do, what changed. The
+// `quote` field is the client's own voice on the same work — leave it empty
+// until you have permission, and the page simply omits it.
+// ─────────────────────────────────────────────────────────────
+export interface CaseStudy {
+  slug: string;
+  client: string;
+  /** Short label for the kind of work — matches the PROJECTS `type` values. */
+  type: string;
+  /** One line, past tense, the result. Used as the page headline. */
+  headline: string;
+  /** Where the signal was hiding. The through-line of the whole site. */
+  signal: string;
+  accent: string;
+  /** The state of things before you arrived, in plain language. */
+  situation: string[];
+  /** The insight — what you found that changed the approach. */
+  finding: string[];
+  /** What you actually built or shipped. Concrete, verifiable. */
+  work: string[];
+  /** Measurable outcomes. Keep these honest and attributable. */
+  outcomes: { value: string; label: string }[];
+  /** What the client would tell another buyer. Needs their permission. */
+  quote?: { text: string; name: string; role: string };
+  /** Anything a prospect would reasonably want to verify. */
+  verify?: string;
+}
+
+export const CASE_STUDIES: CaseStudy[] = [
+  {
+    slug: "creditright",
+    client: "CreditRight",
+    type: "Product + GTM",
+    headline: "Built the market-entry system as the first product and GTM hire.",
+    signal: "Public GST filings",
+    accent: BRAND.colors.lime,
+    situation: [
+      "A pre-launch AI fintech with a product to sell and no defined buyer. The team had a spreadsheet of roughly 5,700 companies pulled from a public dataset and no way to tell which of them had the problem the product solved.",
+      "Outbound had not started, because nobody could agree on who to send it to. Every week spent guessing was a week of runway.",
+    ],
+    finding: [
+      "The qualifying signal was already public. GST filings show turnover bands, filing regularity, and registration status — enough to infer which companies carry the working-capital pain the product addressed.",
+      "That turned a subjective argument about ICP into a scoring problem with an answer.",
+    ],
+    work: [
+      "Built an account scoring model over the raw GST dataset, narrowing 5,754 companies to 2,194 that fit.",
+      "Wrote the positioning and the competitive narrative, mapped across 13 platforms and 4 differentiation angles.",
+      "Designed a 4-touch, 14-day outbound sequence with persona-specific messaging.",
+      "Shipped a CRM-style operating system for the pipeline: lifecycle stages, routing, and follow-up rules.",
+      "Created the design-partner funnel used to land the first cohort.",
+    ],
+    outcomes: [
+      { value: "5,754", label: "companies scored from the raw dataset" },
+      { value: "2,194", label: "qualified accounts into the pipeline" },
+      { value: "13", label: "platforms covered by the competitive narrative" },
+      { value: "1", label: "repeatable market-entry system, handed over" },
+    ],
+    verify:
+      "The scoring model, sequence copy, and CRM structure can be walked through on a call. Client reference available on request.",
+  },
+  {
+    slug: "testkart",
+    client: "TestKart",
+    type: "GTM strategy",
+    headline: "Found the buyers offline when digital channels went quiet.",
+    signal: "Coaching centers and campus ambassador networks",
+    accent: BRAND.colors.coral,
+    situation: [
+      "An education product running the standard playbook: LinkedIn, paid social, content. Spend was going out and the pipeline was not moving.",
+      "The assumption was that the messaging was wrong. It was not the messaging.",
+    ],
+    finding: [
+      "The buyers were not on the channels being paid for. Decisions were happening inside coaching centers and through campus ambassador networks — offline, relationship-led, and invisible to a digital funnel.",
+      "No amount of ad copy iteration fixes being in the wrong room.",
+    ],
+    work: [
+      "Mapped coaching centers as the real distribution layer rather than a side channel.",
+      "Built a campus ambassador network and treated it as an acquisition channel with its own metrics.",
+      "Rebuilt channel selection around where buyers already gather, sequenced by product stage.",
+    ],
+    outcomes: [
+      { value: "Offline", label: "channel identified as the primary motion" },
+      { value: "2", label: "distribution layers built from scratch" },
+    ],
+    verify: "Channel plan and ambassador programme structure available to review on a call.",
+  },
+  {
+    slug: "plucia",
+    client: "Plucia",
+    type: "ICP engineering",
+    headline: "Turned live job postings into a buying-intent signal.",
+    signal: "Live hiring posts",
+    accent: BRAND.colors.blue,
+    situation: [
+      "An AI sales product with two very different target markets — real estate and B2B SaaS — and no shared definition of a good-fit account.",
+      "Firmographic filters returned lists that looked plausible and converted badly.",
+    ],
+    finding: [
+      "A company hiring a telecaller, BDM, or sales intern is telling you, publicly and with a date on it, that it has a response-speed problem it is trying to solve with headcount.",
+      "Real estate closes by the second. B2B SaaS needs an instant reply. Different industries, the same underlying pain — and both were advertising it in plain sight.",
+    ],
+    work: [
+      "Rebuilt the ICP definition around active hiring intent rather than company attributes.",
+      "Mapped both verticals to the shared speed problem so one product story covered both.",
+      "Retargeted outreach at intent signals, with timing tied to when the post went live.",
+    ],
+    outcomes: [
+      { value: "2", label: "verticals unified under one product story" },
+      { value: "Intent", label: "replaced firmographics as the targeting basis" },
+    ],
+    verify: "The signal logic and outreach timing rules can be demonstrated live.",
+  },
+  {
+    slug: "vishwamitra",
+    client: "Vishwamitra",
+    type: "Product management",
+    headline: "Shipped an AI voice-input feature after finding the real adoption blocker.",
+    signal: "Where volunteers dropped the form",
+    accent: BRAND.colors.teal,
+    situation: [
+      "Field volunteers were expected to enter records after a day of fieldwork. Completion rates were poor and onboarding drop-off was high.",
+      "The team read it as a UX problem and was preparing another interface redesign.",
+    ],
+    finding: [
+      "It was not the interface. Volunteers finishing a day in the field would not sit and type, on any layout. The input method was the blocker, not the screen.",
+      "That reframed the fix from design to capability: capture speech, convert it to structured records.",
+    ],
+    work: [
+      "Ran the discovery that isolated the input method as the cause.",
+      "Specced and shipped AI voice input, converting speech into structured records.",
+      "Closed the discovery-to-build loop inside a single sprint.",
+    ],
+    outcomes: [
+      { value: "+20%", label: "completion rate" },
+      { value: "-10%", label: "onboarding drop-off" },
+      { value: "1 sprint", label: "discovery to shipped feature" },
+    ],
+  },
+  {
+    slug: "life-science-instrument-company",
+    client: "Life science instrument company, USA",
+    type: "Ops + product feedback",
+    headline: "Turned support friction into automation and product requirements.",
+    signal: "Patterns inside support tickets",
+    accent: BRAND.colors.violet,
+    situation: [
+      "A support function carrying over 200 active cases, with manual routing and handoffs between Salesforce and Jira eating the team's time.",
+      "Customer feedback was arriving constantly and going nowhere near the product roadmap.",
+    ],
+    finding: [
+      "The same complaints were recurring. Tickets were not just a support workload — they were an unread product requirements document.",
+    ],
+    work: [
+      "Connected Salesforce and Jira through n8n to remove manual handoffs.",
+      "Rebuilt case routing to cut triage time.",
+      "Translated recurring feedback into product requirements and pushed them through to shipped changes.",
+    ],
+    outcomes: [
+      { value: "-40%", label: "manual work" },
+      { value: "-30%", label: "resolution time across 200+ cases" },
+      { value: "2", label: "product improvements shipped from feedback" },
+    ],
+  },
+  {
+    slug: "gaming-company-compliance",
+    client: "Gaming company, USA",
+    type: "Systems build",
+    headline: "Designed a lightweight compliance operating system with no new software spend.",
+    signal: "Obligations nobody owned",
+    accent: BRAND.colors.lime,
+    situation: [
+      "A cross-jurisdiction compliance surface — India, US, privacy, FTC, FDA — tracked informally, with no clear owner per obligation and no evidence trail.",
+      "Buying a compliance platform was not on the table.",
+    ],
+    finding: [
+      "The gap was not tooling. It was that no obligation had a named owner, a reviewer, or a place where evidence lived.",
+    ],
+    work: [
+      "Mapped 250+ obligations into owners, reviewers, evidence, reminders, dashboards, and escalation chains.",
+      "Built a 650-line Apps Script automation engine to drive reminders and escalation.",
+      "Delivered it on Google Workspace, Forms, Drive, and Python — no new licences.",
+    ],
+    outcomes: [
+      { value: "250+", label: "obligations mapped and owned" },
+      { value: "5", label: "regulatory regimes covered" },
+      { value: "₹0", label: "additional software spend" },
+    ],
+  },
+];
+
+/** Look up a case study by slug. */
+export function getCaseStudy(slug: string): CaseStudy | undefined {
+  return CASE_STUDIES.find((c) => c.slug === slug);
+}
+
+// ─────────────────────────────────────────────────────────────
+// Credentials and references
+//
+// Answers the buyer's verification question ("can I check any of this?") without
+// publishing anything sensitive. Trade references are past clients who will
+// vouch for the work — a normal ask from anyone with a procurement process.
+// Nothing is listed here that can't be produced quickly on request.
+// ─────────────────────────────────────────────────────────────
+export const CREDENTIALS = {
+  label: "Verification",
+  heading: "Check the work before you commit to it.",
+  sub: "Two ways to verify what's on this page: talk to someone I've done it for, or look at what I actually built. Both ready on request.",
+  items: [
+    {
+      title: "Trade references",
+      detail:
+        "Named past clients, with title and company, who will take a call or answer an email about the work and how it went.",
+    },
+    {
+      title: "Work samples",
+      detail:
+        "Resume, case study walkthroughs, and live build samples — the actual CRM structures, scoring models, and automation, not screenshots of them.",
+    },
+  ],
+  note: "Shared on request rather than published, so client names stay private until they have agreed to be a reference.",
+};
 
 // ─────────────────────────────────────────────────────────────
 // FAQ + contact

@@ -17,6 +17,8 @@ import {
   OffersSection,
   ProofSection,
 } from "@/components/sections/Sections";
+import Testimonials from "@/components/sections/Testimonials";
+import Credentials from "@/components/sections/Credentials";
 import Contact from "@/components/sections/Contact";
 import { SEO } from "@/content/site";
 
@@ -44,8 +46,36 @@ function useDocumentMeta() {
   }, []);
 }
 
+/**
+ * Handles arriving at shivangim.com/#proof from a bookmark, an email link, or a
+ * "Book a call" button on a case study page. The target may mount a beat after
+ * the route does, hence the short retry.
+ *
+ * Takes the segment after the LAST "#" so it also behaves in the hash-routed
+ * preview build, where the hash already holds the route.
+ */
+function useHashScroll() {
+  useEffect(() => {
+    const hash = window.location.hash;
+    const id = hash.slice(hash.lastIndexOf("#") + 1);
+    if (!id || id.includes("/")) return;
+
+    let tries = 0;
+    const tick = () => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else if (tries++ < 10) {
+        requestAnimationFrame(tick);
+      }
+    };
+    tick();
+  }, []);
+}
+
 export default function Home() {
   useDocumentMeta();
+  useHashScroll();
 
   return (
     <div
@@ -59,6 +89,8 @@ export default function Home() {
         <ProcessSection />
         <OffersSection />
         <ProofSection />
+        <Testimonials />
+        <Credentials />
         <Contact />
       </main>
       <Footer />

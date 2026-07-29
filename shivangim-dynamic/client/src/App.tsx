@@ -1,33 +1,48 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Router as WouterRouter, Switch } from "wouter";
+import { useHashLocation } from "wouter/use-hash-location";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import CaseStudy from "./pages/CaseStudy";
 import Home from "./pages/Home";
 
-
 /**
- * Opened from the filesystem (the single-file preview build) the pathname is the
- * file's own path, which no route matches — so skip routing entirely and render
- * the page.
+ * Opened from the filesystem — the single-file preview build — the pathname is
+ * the file's own path, so path-based routes never match and every link is dead.
+ * Switching to hash routing there makes the preview fully navigable: links
+ * become `…preview.html#/case/creditright` and work with no server.
+ *
+ * On the real site nothing changes; normal path routing applies.
  */
 const isFilePreview =
   typeof window !== "undefined" &&
   (window.location.protocol === "file:" ||
     (window as { __PREVIEW__?: boolean }).__PREVIEW__ === true);
 
-function Router() {
-  if (isFilePreview) return <Home />;
-
+function Routes() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/case/:slug"} component={CaseStudy} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
   );
+}
+
+function Router() {
+  if (isFilePreview) {
+    return (
+      <WouterRouter hook={useHashLocation}>
+        <Routes />
+      </WouterRouter>
+    );
+  }
+
+  return <Routes />;
 }
 
 // NOTE: About Theme

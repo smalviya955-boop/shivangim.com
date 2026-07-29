@@ -26,6 +26,9 @@ file shows its success state without posting anywhere, since there's no API behi
 | **All copy and content** | `client/src/content/site.ts` |
 | Narrative scenes (hook, proof beats, meta-line) | `client/src/components/sections/Story.tsx` |
 | Operating areas, process, offers, proof | `client/src/components/sections/Sections.tsx` |
+| Testimonials ("In their words") | `client/src/components/sections/Testimonials.tsx` |
+| Verification / references block | `client/src/components/sections/Credentials.tsx` |
+| Case study page (`/case/<slug>`) | `client/src/pages/CaseStudy.tsx` |
 | FAQ + lead form | `client/src/components/sections/Contact.tsx` |
 | Hand-drawn doodle annotations | `client/src/components/Doodle.tsx` + `client/src/lib/rough.ts` |
 | Scroll reveal / in-view detection | `client/src/components/Reveal.tsx`, `client/src/hooks/useInView.ts` |
@@ -41,6 +44,23 @@ change a word, a number, or the order of the proof beats.
 
 Adding a section to `NAV_SECTIONS` adds it to the nav and the scroll-spy, as long as the
 section element carries a matching `id`.
+
+### Testimonials and case studies
+
+`TESTIMONIALS` in `content/site.ts` ships empty, and the "In their words" section
+renders nothing — no heading, no gap — until you add an entry. The nav link appears with
+it. Add a quote and the section shows up on its own.
+
+Each entry takes a quote, name, role and company, optionally a `caseSlug` to link to the
+full write-up, and optionally a `screenshot` of the original client message. See
+`client/public/testimonials/README.md` for the screenshot rules — the short version is
+get permission and blur phone numbers.
+
+`CASE_STUDIES` drives `/case/<slug>`. Each one is structured the way a buyer reads:
+where they were, what I found, what I built, what changed, and the client's own words if
+they've agreed to go on record. The `quote` field is optional and the page omits it
+cleanly when absent, so you can publish the case study before the testimonial arrives.
+Proof cards on the home page link to their case study automatically via `slug`.
 
 ### The doodles
 
