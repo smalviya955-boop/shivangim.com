@@ -1,0 +1,11 @@
+# Single-page app fallback.
+#
+# The client routes /case/<slug> itself, but on a static host those paths are not
+# files, so the host answers with its own 404 before the app ever loads. This
+# serves index.html for any path that isn't a real file, with a 200 so it is not
+# treated as an error page, and lets the router take over.
+#
+# Anything above this rule is matched first, which is where a redirect for a
+# retired URL would go.
+
+/*    /index.html    200
