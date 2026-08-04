@@ -27,7 +27,7 @@ function QuoteCard({ item, index }: { item: Testimonial; index: number }) {
   return (
     <Reveal delay={index * 80}>
       <figure
-        className="rounded-2xl bg-white border border-border/50 shadow-sm p-7 h-full flex flex-col"
+        className="rounded-2xl glass-panel p-7 h-full flex flex-col"
         style={isClient ? { borderTop: `3px solid ${BRAND.colors.lime}` } : undefined}
       >
         <span

@@ -26,7 +26,7 @@ function Hook() {
             {HOOK.headlineBefore}
             <br />
             {HOOK.headlineLeadIn}
-            <Doodle kind="circle" color={BRAND.colors.coral} delay={520} weight={2.6}>
+            <Doodle kind="circle" delay={520} weight={2.6}>
               {HOOK.headlineCircled}
             </Doodle>
             {HOOK.headlineAfter}
@@ -34,7 +34,10 @@ function Hook() {
         </Reveal>
 
         <Reveal delay={200}>
-          <p className="mt-8 text-base md:text-lg text-warm-gray max-w-2xl leading-relaxed">
+          <p className="mt-8 text-lg md:text-xl text-charcoal/80 max-w-2xl leading-snug font-medium">
+            {HOOK.subLead}
+          </p>
+          <p className="mt-4 text-base text-warm-gray max-w-2xl leading-relaxed">
             {HOOK.sub}
           </p>
         </Reveal>
@@ -77,10 +80,7 @@ function Beat({ beat, index }: { beat: ProofBeat; index: number }) {
   const dark = index % 2 === 0;
 
   return (
-    <section
-      className={dark ? "py-20 md:py-28" : "py-20 md:py-28"}
-      style={{ background: dark ? BRAND.colors.charcoal : "transparent" }}
-    >
+    <section className={dark ? "py-20 md:py-28 glass-dark-band" : "py-20 md:py-28"}>
       <div className="container max-w-5xl">
         <Reveal>
           <div className="flex items-center gap-3 mb-7 flex-wrap">
@@ -134,7 +134,7 @@ function Beat({ beat, index }: { beat: ProofBeat; index: number }) {
             }}
           >
             {beat.insightBefore}
-            <Doodle kind={beat.emphasisKind} color={beat.accent} delay={420} weight={2.4}>
+            <Doodle kind={beat.emphasisKind} delay={420} weight={2.4}>
               {beat.emphasis}
             </Doodle>
             {beat.insightAfter}
@@ -173,7 +173,7 @@ function MetaLine() {
         <Reveal delay={90}>
           <h2 className="text-[1.75rem] sm:text-4xl md:text-[3.1rem] leading-[1.32] font-bold text-charcoal">
             {META.before}
-            <Doodle kind="circle" color={BRAND.colors.lime} delay={560} weight={2.4}>
+            <Doodle kind="circle" delay={560} weight={2.4}>
               {META.emphasis}
             </Doodle>
           </h2>

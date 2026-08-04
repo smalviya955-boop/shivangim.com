@@ -108,7 +108,7 @@ export function OperatingAreasSection() {
 
 export function ProcessSection() {
   return (
-    <section id="process" className="py-20 md:py-28 scroll-mt-24" style={{ background: "oklch(0.94 0.02 80)" }}>
+    <section id="process" className="py-20 md:py-28 scroll-mt-24 glass-band">
       <div className="container">
         <Reveal>
           <div className="section-label mb-5">
@@ -241,7 +241,7 @@ export function ProofSection() {
         </Reveal>
 
         <Reveal delay={110}>
-          <div className="rounded-2xl p-8 md:p-10 mt-10" style={{ background: BRAND.colors.charcoal }}>
+          <div className="rounded-2xl p-8 md:p-10 mt-10 glass-dark">
             <div className="text-xs font-semibold uppercase tracking-wider text-[#8FA83B] mb-6">
               {SECTION_COPY.proof.metricsLabel}
             </div>

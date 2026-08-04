@@ -21,6 +21,20 @@ import { roughArrow, roughBox, roughEllipse, roughUnderline } from "@/lib/rough"
 export type DoodleKind = "circle" | "underline" | "arrow" | "box";
 
 const DOODLE_CORAL = "#E07050";
+const DOODLE_LIME = "#8FA83B";
+
+/**
+ * Two marks, two jobs. Coral circles and boxes enclose the one claim a scene is
+ * making; lime underlines and arrows mark supporting phrases. Keeping the colour
+ * tied to the kind means a scene can't accidentally end up with two competing
+ * "this is the point" cues. Pass `color` to override for a one-off.
+ */
+const KIND_COLOR: Record<DoodleKind, string> = {
+  circle: DOODLE_CORAL,
+  box: DOODLE_CORAL,
+  underline: DOODLE_LIME,
+  arrow: DOODLE_LIME,
+};
 
 /** How far the annotation extends past the phrase box, as a fraction of its height. */
 const PAD: Record<DoodleKind, { x: number; y: number; band: number | null }> = {
@@ -74,7 +88,7 @@ interface DoodleProps {
 export function Doodle({
   children,
   kind = "circle",
-  color = DOODLE_CORAL,
+  color,
   delay = 220,
   weight = 2.4,
   className = "",
@@ -125,6 +139,7 @@ export function Doodle({
     return () => ro.disconnect();
   }, [ref]);
 
+  const stroke = color ?? KIND_COLOR[kind];
   const pad = PAD[kind];
   const seed = typeof children === "string" ? children : kind;
 
@@ -196,7 +211,7 @@ export function Doodle({
               d={d}
               pathLength={1}
               fill="none"
-              stroke={color}
+              stroke={stroke}
               strokeWidth={weight}
               strokeLinecap="round"
               strokeDasharray={1}

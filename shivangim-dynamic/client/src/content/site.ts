@@ -41,10 +41,15 @@ export const NAV_SECTIONS = [
 export const HOOK = {
   eyebrow: "Market Discovery & GTM Consultant",
   /** Split so the doodle circle lands on the exact phrase. */
-  headlineBefore: "I don't guess your ICP.",
-  headlineLeadIn: "I find ",
-  headlineCircled: "where the pain already lives.",
-  headlineAfter: "",
+  headlineBefore: "Most GTM advice starts with assumptions.",
+  headlineLeadIn: "Mine starts with ",
+  headlineCircled: "evidence",
+  headlineAfter: ".",
+  /**
+   * The line that used to be the headline. It still does the work of setting up
+   * the three signal stories, so it leads the sub-copy rather than disappearing.
+   */
+  subLead: "I don't guess your ICP. I find where the pain already lives.",
   sub: "I help early-stage teams find where demand already exists, sharpen positioning, and build a GTM strategy on evidence instead of assumptions.",
   primaryCta: { label: "Book a GTM strategy call", href: "#contact" },
   secondaryCta: { label: "See proof of work", href: "#proof" },

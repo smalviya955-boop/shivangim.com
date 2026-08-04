@@ -232,7 +232,7 @@ function LeadForm() {
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 md:py-28 scroll-mt-24" style={{ background: "oklch(0.94 0.02 80)" }}>
+    <section id="contact" className="py-20 md:py-28 scroll-mt-24 glass-band">
       <div className="container">
         <Reveal>
           <div className="section-label mb-5">
@@ -247,7 +247,7 @@ export default function Contact() {
           <div className="lg:col-span-3 space-y-3">
             {FAQS.map((faq, i) => (
               <Reveal key={faq.q} delay={i * 70}>
-                <details className="border border-border/50 rounded-xl overflow-hidden bg-white group">
+                <details className="rounded-xl overflow-hidden glass-panel group">
                   <summary className="px-5 py-4 text-sm font-medium text-charcoal cursor-pointer select-none list-none flex items-center justify-between gap-4">
                     {faq.q}
                     <span className="text-muted-foreground text-lg shrink-0 group-open:rotate-45 transition-transform duration-200">
@@ -260,7 +260,7 @@ export default function Contact() {
             ))}
 
             <Reveal delay={300}>
-              <div className="tab-sand-block mt-6" style={{ background: "#fff" }}>
+              <div className="tab-sand-block glass-panel mt-6">
                 <div className="tab-sand-label mb-3">Reach me directly</div>
                 <div className="space-y-1.5 text-sm">
                   <div className="text-muted-foreground">

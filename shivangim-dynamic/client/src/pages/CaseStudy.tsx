@@ -155,7 +155,7 @@ export default function CaseStudy() {
 
                 <p className="mt-7 text-sm md:text-base text-warm-gray">
                   Signal found in{" "}
-                  <Doodle kind="underline" color={study.accent} delay={400}>
+                  <Doodle kind="underline" delay={400}>
                     {study.signal}
                   </Doodle>
                 </p>
@@ -218,7 +218,7 @@ export default function CaseStudy() {
               {clientQuote && (
                 <Reveal>
                   <figure
-                    className="mb-14 max-w-3xl rounded-2xl bg-white border border-border/50 shadow-sm p-8"
+                    className="mb-14 max-w-3xl rounded-2xl glass-panel p-8"
                     style={{ borderTop: `3px solid ${study.accent}` }}
                   >
                     <div className="section-label mb-5">
