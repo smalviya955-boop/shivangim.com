@@ -16,7 +16,7 @@
  */
 import { Link } from "wouter";
 import Reveal from "@/components/Reveal";
-import { BRAND, CASE_STUDIES, TESTIMONIALS, type Testimonial } from "@/content/site";
+import { BRAND, CASE_STUDIES, SECTION_COPY, TESTIMONIALS, type Testimonial } from "@/content/site";
 import { attributionFor, attributionInitials } from "@/lib/attribution";
 
 function QuoteCard({ item, index }: { item: Testimonial; index: number }) {
@@ -138,11 +138,10 @@ export default function Testimonials() {
             <Reveal>
               <div className="mt-20 mb-2">
                 <div className="section-label mb-4">
-                  <span>From the people who worked with me</span>
+                  <span>{SECTION_COPY.words.colleaguesLabel}</span>
                 </div>
                 <p className="text-sm text-warm-gray max-w-2xl leading-relaxed">
-                  Colleagues rather than clients. How the work actually goes day to day. All three
-                  are public recommendations on LinkedIn, so you can check them yourself.
+                  {SECTION_COPY.words.colleaguesSub}
                 </p>
               </div>
             </Reveal>
