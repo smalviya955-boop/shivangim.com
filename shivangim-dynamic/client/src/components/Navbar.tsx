@@ -10,7 +10,7 @@
  */
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
-import { BRAND, NAV_SECTIONS } from "@/content/site";
+import { BRAND, NAV_SECTIONS, SECTION_COPY } from "@/content/site";
 import { goToSection } from "@/lib/goToSection";
 
 export default function Navbar() {
@@ -117,7 +117,7 @@ export default function Navbar() {
               onClick={() => go("contact")}
               className="px-4 py-2 bg-[#8FA83B] text-white text-sm font-medium rounded-md hover:bg-[#7d9435] transition-all duration-200 active:scale-[0.97] shadow-sm shadow-[#8FA83B]/20"
             >
-             Book a GTM strategy call
+              {SECTION_COPY.nav.cta}
             </button>
           </li>
         </ul>
@@ -156,7 +156,7 @@ export default function Navbar() {
                 onClick={() => go("contact")}
                 className="block px-4 py-2.5 bg-[#8FA83B] text-white text-sm font-medium rounded-md text-center mt-2 w-full"
               >
-                Book a GTM strategy call
+                {SECTION_COPY.nav.cta}
               </button>
             </li>
           </ul>
