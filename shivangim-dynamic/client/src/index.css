@@ -347,3 +347,166 @@ html {
   line-height: 1.5;
   color: oklch(0.18 0.005 60);
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SPATIAL UI — glass & depth
+   ───────────────────────────────────────────────────────────────────────────
+   The page is a soft colour field with translucent panels floating above it.
+   Depth comes from blur, layered shadow and a small lift on hover — no WebGL,
+   no scroll library, so the page costs the same to load as it did before.
+
+   Two surface types carry everything:
+     .glass-panel  light translucent card
+     .glass-dark   dark translucent card, for metrics and the value block
+   plus .glass-band (a full-width section that lets the field show through) and
+   .glass-dark-band (a dimmed full-width band for the odd-numbered proof beats).
+
+   Existing utility classes (.card-hover, .bg-white) are mapped onto .glass-panel
+   below so the reskin reaches cards that still use the old Tailwind classes.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --glass-fill: rgba(255, 255, 255, 0.5);
+  --glass-fill-strong: rgba(255, 255, 255, 0.66);
+  --glass-edge: rgba(255, 255, 255, 0.75);
+  --glass-lift: 0 1px 0 rgba(255, 255, 255, 0.9) inset,
+                0 18px 46px -14px rgba(40, 40, 60, 0.28),
+                0 3px 10px rgba(40, 40, 60, 0.06);
+  --glass-lift-hover: 0 1px 0 rgba(255, 255, 255, 0.9) inset,
+                      0 34px 64px -16px rgba(40, 40, 60, 0.34),
+                      0 5px 14px rgba(40, 40, 60, 0.08);
+  --glass-dark-fill: rgba(20, 20, 28, 0.74);
+  --glass-dark-edge: rgba(255, 255, 255, 0.14);
+  --glass-blur: blur(28px) saturate(180%);
+}
+
+/* ── the colour field ───────────────────────────────────────────────────────
+   Fixed behind everything and built from gradients rather than elements, so it
+   costs no DOM and never scrolls out from under the panels. */
+body {
+  background: #ece8f1;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20vmax;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(38vmax 38vmax at 8% 4%, rgba(185, 201, 122, 0.85), transparent 62%),
+    radial-gradient(32vmax 32vmax at 96% 30%, rgba(240, 168, 142, 0.8), transparent 62%),
+    radial-gradient(30vmax 30vmax at 12% 62%, rgba(157, 182, 216, 0.7), transparent 62%),
+    radial-gradient(34vmax 34vmax at 88% 92%, rgba(184, 160, 208, 0.6), transparent 64%),
+    linear-gradient(160deg, #f3f0f7, #e7e3ef);
+  filter: blur(36px) saturate(112%);
+}
+
+/* ── surfaces ───────────────────────────────────────────────────────────── */
+.glass-panel,
+.card-hover,
+main .bg-white {
+  background: var(--glass-fill) !important;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-edge) !important;
+  border-radius: 1.25rem;
+  box-shadow: var(--glass-lift);
+  transition: transform 0.38s cubic-bezier(0.2, 0.8, 0.3, 1), box-shadow 0.38s;
+}
+.card-hover:hover,
+.glass-panel:hover {
+  transform: translateY(-7px);
+  box-shadow: var(--glass-lift-hover);
+}
+
+/* The dark offer card keeps its inverted treatment — it carries the dark
+   system badge, which is what distinguishes it from its two light siblings. */
+.glass-dark,
+.tab-value-block,
+.card-hover:has(> .system-badge) {
+  background: var(--glass-dark-fill) !important;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-dark-edge) !important;
+  border-radius: 1.25rem;
+  box-shadow: 0 20px 50px -14px rgba(20, 20, 30, 0.45);
+  color: oklch(0.94 0.01 80);
+}
+
+/* Accent edges set inline on cards (offer top border, project left border) stay
+   — they read as a lit edge on glass, which is the effect we want. */
+
+/* ── full-width bands ───────────────────────────────────────────────────── */
+.glass-band {
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-top: 1px solid rgba(255, 255, 255, 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+}
+.glass-dark-band {
+  background: rgba(20, 20, 28, 0.72);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── chrome that sits on the field ──────────────────────────────────────── */
+.system-badge-light {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: oklch(0.42 0.02 60);
+}
+.section-label::before {
+  background: linear-gradient(90deg, oklch(0.65 0.12 120), oklch(0.62 0.15 30));
+  border-radius: 2px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(60, 60, 80, 0.28);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(60, 60, 80, 0.45);
+}
+
+/* The doodle sits above the glass, so it needs a little separation from the
+   panel behind it or the stroke reads as part of the blur. */
+.doodle-svg path {
+  filter: drop-shadow(0 1px 2px rgba(40, 40, 60, 0.22));
+}
+
+/* ── graceful degradation ───────────────────────────────────────────────────
+   Firefox only enabled backdrop-filter by default recently and some older
+   Android browsers still don't support it. Without this the panels would be
+   half-transparent with no blur, and the text on them would be unreadable. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-panel,
+  .card-hover,
+  main .bg-white {
+    background: rgba(255, 255, 255, 0.92) !important;
+  }
+  .glass-dark,
+  .tab-value-block,
+  .card-hover:has(> .system-badge),
+  .glass-dark-band {
+    background: rgba(20, 20, 28, 0.95) !important;
+  }
+  .glass-band {
+    background: rgba(255, 255, 255, 0.75);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-hover,
+  .glass-panel {
+    transition: none;
+  }
+  .card-hover:hover,
+  .glass-panel:hover {
+    transform: none;
+  }
+}
