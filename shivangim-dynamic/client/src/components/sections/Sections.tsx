@@ -14,6 +14,7 @@ import {
   PROOF_STATS,
   PROJECTS,
   BRAND,
+  SECTION_COPY,
 } from "@/content/site";
 
 export function OperatingAreasSection() {
@@ -25,13 +26,13 @@ export function OperatingAreasSection() {
       <div className="container">
         <Reveal>
           <div className="section-label mb-5">
-            <span>What I help with</span>
+            <span>{SECTION_COPY.operating.label}</span>
           </div>
           <h2 className="text-3xl md:text-[2.6rem] font-bold text-charcoal max-w-2xl leading-[1.2]">
-            The pain hides in a different place for every business.
+            {SECTION_COPY.operating.heading}
           </h2>
           <p className="mt-4 text-warm-gray max-w-2xl leading-relaxed">
-            Pick your business type to see where I look first, and what the work looks like.
+            {SECTION_COPY.operating.sub}
           </p>
         </Reveal>
 
