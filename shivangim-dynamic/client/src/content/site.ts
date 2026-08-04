@@ -8,7 +8,7 @@
 
 export const BRAND = {
   name: "Shivangi Malviya",
-  role: "Product & GTM Strategy Consultant",
+  role: "Market Discovery & GTM Consultant",
   email: "hello@shivangim.com",
   phone: "+91 98066 47672",
   phoneHref: "tel:+919806647672",
@@ -28,8 +28,8 @@ export const BRAND = {
 /** Sections in scroll order — drives the nav and the scroll-spy. */
 export const NAV_SECTIONS = [
   { id: "story", label: "The method" },
-  { id: "operating", label: "Operating areas" },
   { id: "offers", label: "Offers" },
+  { id: "operating", label: "What I help with" },
   { id: "proof", label: "Proof" },
   { id: "words", label: "In their words" },
   { id: "contact", label: "Contact" },
@@ -39,16 +39,16 @@ export const NAV_SECTIONS = [
 // Scene 1 — Hook
 // ─────────────────────────────────────────────────────────────
 export const HOOK = {
-  eyebrow: "Product & GTM Strategy Consultant",
+  eyebrow: "Market Discovery & GTM Consultant",
   /** Split so the doodle circle lands on the exact phrase. */
   headlineBefore: "I don't guess your ICP.",
   headlineLeadIn: "I find ",
   headlineCircled: "where the pain already lives.",
   headlineAfter: "",
-  sub: "Same question, every client. The answer is never in a generic filter — it's in a GST filing, a campus network, or a job posting nobody thought to read.",
-  primaryCta: { label: "Book a strategy diagnosis", href: "#contact" },
+  sub: "I help early-stage teams find where demand already exists, sharpen positioning, and build a GTM strategy on evidence instead of assumptions.",
+  primaryCta: { label: "Book a GTM strategy call", href: "#contact" },
   secondaryCta: { label: "See proof of work", href: "#proof" },
-  tags: ["Product direction", "Positioning", "GTM strategy", "Launch execution"],
+  tags: ["Market discovery", "Positioning", "GTM strategy", "Launch execution"],
 };
 
 // ─────────────────────────────────────────────────────────────
@@ -81,7 +81,7 @@ export const PROOF_BEATS: ProofBeat[] = [
     id: "creditright",
     client: "CreditRight",
     code: "SIG 01",
-    setup: "CreditRight needed real prospects — not a spreadsheet of maybes.",
+    setup: "CreditRight needed real prospects, not a spreadsheet of maybes.",
     figure: {
       from: 5754,
       to: 2194,
@@ -129,7 +129,7 @@ export const PROOF_BEATS: ProofBeat[] = [
 // Scene 5 — Meta-line (the turn)
 // ─────────────────────────────────────────────────────────────
 export const META = {
-  label: "The method",
+  label: "The Signal Method",
   before: "Same question, every time: ",
   emphasis: "where does the pain already show up?",
   after: "",
@@ -168,7 +168,7 @@ export const OPERATING_AREAS: OperatingArea[] = [
   },
   {
     label: "D2C brands",
-    title: "Launch discipline for consumer products.",
+    title: "From first order to repeat demand.",
     desc: "From first listing to repeat orders. We define the brand promise, select channels, build the launch narrative, and set up the feedback loop from customer behavior back to product decisions.",
     signal: "Usually hiding in: return reasons, review text, repeat-order gaps",
     pipeline: [
@@ -239,66 +239,81 @@ export interface Offer {
 
 export const OFFERS: Offer[] = [
   {
-    title: "Product + GTM clarity sprint",
-    desc: "A focused one-time engagement for product direction, positioning, offer cleanup, channel choice, or launch planning.",
+    title: "Market & GTM clarity sprint",
+    desc: "A focused one-time engagement for market discovery, positioning, offer cleanup, channel choice, or launch planning. Best for founders with traction but no agreement on who the buyer is.",
     bullets: [
+      "Market discovery and demand-signal audit",
       "Current product and funnel diagnosis",
+      "Positioning, messaging, and channel priorities",
       "90-day action plan",
-      "Roadmap, messaging, and channel priorities",
     ],
-    cta: "Ask for sprint",
+    cta: "Book a GTM strategy call",
     dark: false,
     accent: BRAND.colors.lime,
     code: "MOD 01",
   },
   {
     title: "Fractional Product & GTM Partner",
-    desc: "Ongoing support with 2-3 working sessions a week for founders who need product and market thinking without a full-time senior hire.",
+    desc: "Ongoing support with 2-3 working sessions a week for founders who need product and market thinking without a full-time senior hire. Best for teams past first revenue, deciding what to scale.",
     bullets: [
       "Weekly execution rhythm",
       "Roadmap, offer, and launch guidance",
       "Product, sales, and marketing alignment",
     ],
-    cta: "Book intro call",
+    cta: "Book a GTM strategy call",
     dark: true,
     accent: BRAND.colors.lime,
     code: "MOD 02",
   },
   {
     title: "Launch command room",
-    desc: "For new products, real estate launches, institute admissions, clinic campaigns, or brand launches with a fixed timeline.",
+    desc: "For new products, real estate launches, institute admissions, clinic campaigns, or brand launches with a fixed timeline. Best when the launch date is already committed to the market.",
     bullets: [
       "Product promise, launch narrative, and calendar",
       "Lead capture and follow-up flow",
       "Weekly launch review",
     ],
-    cta: "Plan a launch",
+    cta: "Book a GTM strategy call",
     dark: false,
     accent: BRAND.colors.blue,
     code: "MOD 03",
   },
 ];
 
+/**
+ * The Signal Method — six steps, in order. Every step produces something you can
+ * check, so when a conclusion is wrong you can trace it back instead of guessing.
+ */
 export const PROCESS_STEPS = [
   {
     num: "01",
-    title: "Find where the pain already shows up",
-    desc: "Before any strategy, we look for the signal that already exists — filings, hiring posts, support tickets, drop-off points, call logs.",
+    title: "Signal sources",
+    desc: "Find where the pain already shows up. Filings, hiring posts, support tickets, drop-off points, call logs, offline networks.",
   },
   {
     num: "02",
-    title: "Choose the sharpest bet",
-    desc: "We decide what gets fixed first: product packaging, feature priority, positioning, launch sequence, lead flow, or sales handoff.",
+    title: "Evidence",
+    desc: "Pull the raw records. No interpretation yet. Just what is verifiably true.",
   },
   {
     num: "03",
-    title: "Build the working assets",
-    desc: "Roadmap notes, product briefs, messaging, launch plans, channel plans, scripts, and CRM follow-up rules — things the team uses on Monday.",
+    title: "Pattern discovery",
+    desc: "Find what the buyers who already have the problem have in common.",
   },
   {
     num: "04",
-    title: "Review and improve weekly",
-    desc: "We use what happened in market to tune the product, offer, onboarding, qualification, creative, and next moves.",
+    title: "Positioning",
+    desc: "Write down who it is for and what actually changes for them.",
+  },
+  {
+    num: "05",
+    title: "GTM strategy",
+    desc: "Choose the channel, the sequence, and the proof each stage needs.",
+  },
+  {
+    num: "06",
+    title: "Execution",
+    desc: "Build the working assets, run the loop, and tune weekly on what the market did. Roadmap notes, briefs, messaging, scripts, CRM rules. Things the team uses on Monday.",
   },
 ];
 
@@ -411,8 +426,11 @@ export const PROJECTS: Project[] = [
 // do it again. Buyers use the second to decide whether to believe the first.
 //
 // NOTHING GOES IN HERE WITHOUT THE CLIENT'S PERMISSION. Names, titles, company
-// names, logos and message screenshots all need an explicit yes — a screenshot
+// names, logos and message screenshots all need an explicit yes. A screenshot
 // of a private chat is still that person's words.
+//
+// Quotes are reproduced exactly as given, punctuation included. Do not edit them
+// for house style.
 //
 // The section hides itself while this list is empty, so the site never shows an
 // empty "testimonials" heading. Fill one in and it appears.
@@ -544,7 +562,7 @@ export const TESTIMONIALS: Testimonial[] = [
 //
 // Structure follows how a buyer reads: what state were they in, what did you
 // find that nobody else had, what did you actually do, what changed. The
-// `quote` field is the client's own voice on the same work — leave it empty
+// `quote` field is the client's own voice on the same work. Leave it empty
 // until you have permission, and the page simply omits it.
 // ─────────────────────────────────────────────────────────────
 export interface CaseStudy {
@@ -584,8 +602,8 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Outbound had not started, because nobody could agree on who to send it to. Every week spent guessing was a week of runway.",
     ],
     finding: [
-      "The qualifying signal was already public. GST filings show turnover bands, filing regularity, and registration status — enough to infer which companies carry the working-capital pain the product addressed.",
-      "That turned a subjective argument about ICP into a scoring problem with an answer.",
+      "The qualifying signal was already public. GST filings show turnover bands, filing regularity, and registration status. That is enough to infer which companies carry the working-capital pain the product addressed.",
+      "It turned a subjective argument about ICP into a scoring problem with an answer.",
     ],
     work: [
       "Built an account scoring model over the raw GST dataset, narrowing 5,754 companies to 2,194 that fit.",
@@ -615,7 +633,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "The assumption was that the messaging was wrong. It was not the messaging.",
     ],
     finding: [
-      "The buyers were not on the channels being paid for. Decisions were happening inside coaching centers and through campus ambassador networks — offline, relationship-led, and invisible to a digital funnel.",
+      "The buyers were not on the channels being paid for. Decisions were happening inside coaching centers and through campus ambassador networks. Offline, relationship-led, and invisible to a digital funnel.",
       "No amount of ad copy iteration fixes being in the wrong room.",
     ],
     work: [
@@ -637,12 +655,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     signal: "Live hiring posts",
     accent: BRAND.colors.blue,
     situation: [
-      "An AI sales product with two very different target markets — real estate and B2B SaaS — and no shared definition of a good-fit account.",
+      "An AI sales product with two very different target markets, real estate and B2B SaaS, and no shared definition of a good-fit account.",
       "Firmographic filters returned lists that looked plausible and converted badly.",
     ],
     finding: [
       "A company hiring a telecaller, BDM, or sales intern is telling you, publicly and with a date on it, that it has a response-speed problem it is trying to solve with headcount.",
-      "Real estate closes by the second. B2B SaaS needs an instant reply. Different industries, the same underlying pain — and both were advertising it in plain sight.",
+      "Real estate closes by the second. B2B SaaS needs an instant reply. Different industries, the same underlying pain, and both were advertising it in plain sight.",
     ],
     work: [
       "Rebuilt the ICP definition around active hiring intent rather than company attributes.",
@@ -693,7 +711,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Customer feedback was arriving constantly and going nowhere near the product roadmap.",
     ],
     finding: [
-      "The same complaints were recurring. Tickets were not just a support workload — they were an unread product requirements document.",
+      "The same complaints were recurring. Tickets were not just a support workload. They were an unread product requirements document.",
     ],
     work: [
       "Connected Salesforce and Jira through n8n to remove manual handoffs.",
@@ -714,7 +732,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     signal: "Obligations nobody owned",
     accent: BRAND.colors.lime,
     situation: [
-      "A cross-jurisdiction compliance surface — India, US, privacy, FTC, FDA — tracked informally, with no clear owner per obligation and no evidence trail.",
+      "A cross-jurisdiction compliance surface across India, US, privacy, FTC and FDA, tracked informally, with no clear owner per obligation and no evidence trail.",
       "Buying a compliance platform was not on the table.",
     ],
     finding: [
@@ -723,7 +741,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     work: [
       "Mapped 250+ obligations into owners, reviewers, evidence, reminders, dashboards, and escalation chains.",
       "Built a 650-line Apps Script automation engine to drive reminders and escalation.",
-      "Delivered it on Google Workspace, Forms, Drive, and Python — no new licences.",
+      "Delivered it on Google Workspace, Forms, Drive, and Python. No new licences.",
     ],
     outcomes: [
       { value: "250+", label: "obligations mapped and owned" },
@@ -743,7 +761,7 @@ export function getCaseStudy(slug: string): CaseStudy | undefined {
 //
 // Answers the buyer's verification question ("can I check any of this?") without
 // publishing anything sensitive. Trade references are past clients who will
-// vouch for the work — a normal ask from anyone with a procurement process.
+// vouch for the work, a normal ask from anyone with a procurement process.
 // Nothing is listed here that can't be produced quickly on request.
 // ─────────────────────────────────────────────────────────────
 export const CREDENTIALS = {
@@ -759,7 +777,7 @@ export const CREDENTIALS = {
     {
       title: "Work samples",
       detail:
-        "Resume, case study walkthroughs, and live build samples — the actual CRM structures, scoring models, and automation, not screenshots of them.",
+        "Resume, case study walkthroughs, and live build samples. The actual CRM structures, scoring models, and automation, not screenshots of them.",
     },
   ],
   note: "Shared on request rather than published, so client names stay private until they have agreed to be a reference.",
@@ -771,15 +789,15 @@ export const CREDENTIALS = {
 export const FAQS = [
   {
     q: "Why fractional instead of hiring full-time?",
-    a: "A senior product or GTM hire is expensive and often hard to justify before the motion is proven. Fractional support gives you senior judgment, focus, and operating rhythm without committing to a permanent role too early.",
+    a: "A senior product or GTM hire is a three-to-six month search and a large fixed cost, usually committed before you know which market you are actually serving. Fractional support gives you senior judgment, focus, and operating rhythm in weeks. You convert to a full-time hire once the direction is proven.",
   },
   {
     q: "Is this only for startups?",
-    a: "No. The work applies to any business with a product and a market: early-stage startups, growth-stage SaaS, D2C brands launching new products, manufacturers going direct, real estate projects, and education businesses.",
+    a: "No. The method works anywhere buying intent leaves a trace. Early-stage startups, growth-stage SaaS, D2C brands launching new products, manufacturers going direct, real estate projects, education businesses. The signal source changes. The approach does not.",
   },
   {
     q: "How is this different from an agency?",
-    a: "Agencies execute marketing. This role sits between founder, product, marketing, and sales. The focus is on product direction, packaging, positioning, and the execution rhythm — not on running ads or making content.",
+    a: "An agency executes a channel you have already chosen. This role sits upstream of that, between founder, product, marketing and sales: finding where demand already exists, deciding what to sell and to whom, then building the execution rhythm. The focus is product direction, packaging and positioning, not running ads or making content.",
   },
   {
     q: "What happens after the first call?",
@@ -790,7 +808,7 @@ export const FAQS = [
 export const CONTACT = {
   label: "Contact",
   heading: "Bring one messy product or GTM problem.",
-  sub: "Send the context. I'll come back with where I think the pain is actually showing up — and the right next step.",
+  sub: "Send the context. I'll come back with where I think the pain is actually showing up, and the right next step.",
   businessTypes: [
     "Tech / SaaS",
     "D2C / Consumer",
@@ -803,7 +821,7 @@ export const CONTACT = {
 };
 
 export const SEO = {
-  title: "Shivangi Malviya | Product & GTM Strategy Consultant",
+  title: "Shivangi Malviya | Market Discovery & GTM Consultant",
   description:
-    "I don't guess your ICP — I find where the pain already lives. Fractional product and GTM strategy for founders: positioning, launch execution, and a 90-day operating rhythm.",
+    "Most GTM advice starts with assumptions. Mine starts with evidence. Market discovery, positioning, launch execution and a 90-day operating rhythm for early-stage teams.",
 };
