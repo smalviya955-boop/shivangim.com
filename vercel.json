@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "cd shivangim-dynamic && corepack enable && pnpm install --frozen-lockfile",
-  "buildCommand": "cd shivangim-dynamic && pnpm exec vite build",
+  "installCommand": "cd shivangim-dynamic && npm install --no-audit --no-fund",
+  "buildCommand": "cd shivangim-dynamic && npm run build",
   "outputDirectory": "shivangim-dynamic/dist/public",
   "framework": null,
   "rewrites": [
