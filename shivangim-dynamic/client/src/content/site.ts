@@ -825,3 +825,46 @@ export const SEO = {
   description:
     "Most GTM advice starts with assumptions. Mine starts with evidence. Market discovery, positioning, launch execution and a 90-day operating rhythm for early-stage teams.",
 };
+
+// ─────────────────────────────────────────────────────────────
+// Section headings and standing labels
+//
+// These used to be hardcoded inside the section components, which meant the file
+// header's claim that "every word lives here" was not true, and a copy change
+// touched four files. Anything a visitor reads now belongs in this file.
+// ─────────────────────────────────────────────────────────────
+export const SECTION_COPY = {
+  operating: {
+    label: "What I help with",
+    heading: "The pain hides in a different place for every business.",
+    sub: "Pick your business type to see where I look first, and what the work looks like.",
+    valueLabel: "The value for you",
+  },
+  process: {
+    label: "The Signal Method",
+    heading: "Six steps, and every one produces something you can check.",
+  },
+  offers: {
+    label: "Engagement models",
+    heading: "Start with the amount of help you actually need.",
+    sub: "Use a sprint when you need a decision and a roadmap. Use a retainer when you need a fractional partner operating with the team.",
+  },
+  proof: {
+    label: "Proof from actual builds",
+    headingBefore: "Strategy backed by ",
+    headingEmphasis: "shipped systems",
+    headingAfter: ".",
+    sub: "I have built product features, GTM pipelines, CRM systems, automation workflows, diagnostics, and operating playbooks from scratch.",
+    metricsLabel: "System metrics",
+    footnote:
+      "Each case study walks through where the client was, what signal I found, what I built, and what changed. References available if you want to hear it from them.",
+  },
+  words: {
+    colleaguesLabel: "From the people who worked with me",
+    colleaguesSub:
+      "Colleagues rather than clients. How the work actually goes day to day. All three are public recommendations on LinkedIn, so you can check them yourself.",
+  },
+  nav: {
+    cta: "Book a GTM strategy call",
+  },
+} as const;
