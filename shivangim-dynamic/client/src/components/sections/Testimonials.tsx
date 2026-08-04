@@ -141,7 +141,7 @@ export default function Testimonials() {
                   <span>From the people who worked with me</span>
                 </div>
                 <p className="text-sm text-warm-gray max-w-2xl leading-relaxed">
-                  Colleagues rather than clients — how the work actually goes day to day. All three
+                  Colleagues rather than clients. How the work actually goes day to day. All three
                   are public recommendations on LinkedIn, so you can check them yourself.
                 </p>
               </div>
