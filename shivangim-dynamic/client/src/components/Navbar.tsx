@@ -117,7 +117,7 @@ export default function Navbar() {
               onClick={() => go("contact")}
               className="px-4 py-2 bg-[#8FA83B] text-white text-sm font-medium rounded-md hover:bg-[#7d9435] transition-all duration-200 active:scale-[0.97] shadow-sm shadow-[#8FA83B]/20"
             >
-              Book a call
+             Book a GTM strategy call
             </button>
           </li>
         </ul>
@@ -156,7 +156,7 @@ export default function Navbar() {
                 onClick={() => go("contact")}
                 className="block px-4 py-2.5 bg-[#8FA83B] text-white text-sm font-medium rounded-md text-center mt-2 w-full"
               >
-                Book a call
+                Book a GTM strategy call
               </button>
             </li>
           </ul>
