@@ -96,7 +96,7 @@ export function OperatingAreasSection() {
 
           <div className="lg:col-span-2 tab-value-block flex items-center">
             <div>
-              <div className="tab-value-label mb-3">The value for you</div>
+              <div className="tab-value-label mb-3">{SECTION_COPY.operating.valueLabel}</div>
               <div className="tab-value-text">{area.why}</div>
             </div>
           </div>
@@ -112,10 +112,10 @@ export function ProcessSection() {
       <div className="container">
         <Reveal>
           <div className="section-label mb-5">
-            <span>The Signal Method</span>
+            <span>{SECTION_COPY.process.label}</span>
           </div>
           <h2 className="text-3xl md:text-[2.6rem] font-bold text-charcoal max-w-3xl leading-[1.2]">
-            Six steps, and every one produces something you can check.
+            {SECTION_COPY.process.heading}
           </h2>
         </Reveal>
 
@@ -144,14 +144,13 @@ export function OffersSection() {
       <div className="container">
         <Reveal>
           <div className="section-label mb-5">
-            <span>Engagement models</span>
+            <span>{SECTION_COPY.offers.label}</span>
           </div>
           <h2 className="text-3xl md:text-[2.6rem] font-bold text-charcoal max-w-3xl leading-[1.2]">
-            Start with the amount of help you actually need.
+            {SECTION_COPY.offers.heading}
           </h2>
           <p className="mt-4 text-warm-gray max-w-2xl leading-relaxed">
-            Use a sprint when you need a decision and a roadmap. Use a retainer when you need a
-            fractional partner operating with the team.
+            {SECTION_COPY.offers.sub}
           </p>
         </Reveal>
 
@@ -227,25 +226,24 @@ export function ProofSection() {
       <div className="container">
         <Reveal>
           <div className="section-label mb-5">
-            <span>Proof from actual builds</span>
+            <span>{SECTION_COPY.proof.label}</span>
           </div>
           <h2 className="text-3xl md:text-[2.6rem] font-bold text-charcoal max-w-3xl leading-[1.2]">
-            Strategy backed by{" "}
+            {SECTION_COPY.proof.headingBefore}
             <Doodle kind="underline" color={BRAND.colors.lime} delay={400}>
-              shipped systems
+              {SECTION_COPY.proof.headingEmphasis}
             </Doodle>
             .
           </h2>
           <p className="mt-4 text-warm-gray max-w-2xl leading-relaxed">
-            I have built product features, GTM pipelines, CRM systems, automation workflows,
-            diagnostics, and operating playbooks from scratch.
+            {SECTION_COPY.proof.sub}
           </p>
         </Reveal>
 
         <Reveal delay={110}>
           <div className="rounded-2xl p-8 md:p-10 mt-10" style={{ background: BRAND.colors.charcoal }}>
             <div className="text-xs font-semibold uppercase tracking-wider text-[#8FA83B] mb-6">
-              System metrics
+              {SECTION_COPY.proof.metricsLabel}
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {PROOF_STATS.map((s) => (
@@ -322,8 +320,7 @@ export function ProofSection() {
 
         <Reveal delay={80}>
           <p className="mt-8 text-sm text-warm-gray max-w-2xl leading-relaxed">
-            Each case study walks through where the client was, what signal I found, what I built,
-            and what changed. References available if you want to hear it from them.
+            {SECTION_COPY.proof.footnote}
           </p>
         </Reveal>
       </div>
