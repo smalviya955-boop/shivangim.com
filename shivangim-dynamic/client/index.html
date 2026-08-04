@@ -6,22 +6,149 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Shivangi Malviya | Product &amp; GTM Strategy Consultant</title>
+
+    <!--
+      These tags are the ones crawlers actually read. Home.tsx also sets title,
+      description and og:title/og:description at runtime from SEO in site.ts, but
+      most scrapers (LinkedIn, WhatsApp, Slack) never run the JS, so the values
+      here are what shows up in a link preview. Keep them in sync with SEO.
+    -->
+    <title>Shivangi Malviya | Market Discovery &amp; GTM Consultant</title>
     <meta
       name="description"
-      content="I don't guess your ICP — I find where the pain already lives. Fractional product and GTM strategy for founders: positioning, launch execution, and a 90-day operating rhythm." />
+      content="Most GTM advice starts with assumptions. Mine starts with evidence. Market discovery, positioning, launch execution and a 90-day operating rhythm for early-stage teams." />
+    <link rel="canonical" href="https://shivangim.com/" />
+    <meta name="author" content="Shivangi Malviya" />
     <meta name="theme-color" content="#8FA83B" />
+
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://shivangim.com/" />
+    <meta property="og:site_name" content="Shivangi Malviya" />
     <meta
       property="og:title"
-      content="Shivangi Malviya | Product &amp; GTM Strategy Consultant" />
+      content="Shivangi Malviya | Market Discovery &amp; GTM Consultant" />
     <meta
       property="og:description"
-      content="I don't guess your ICP — I find where the pain already lives." />
+      content="Most GTM advice starts with assumptions. Mine starts with evidence." />
+    <meta property="og:image" content="https://shivangim.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Shivangi Malviya, Market Discovery and GTM Consultant. Most GTM advice starts with assumptions. Mine starts with evidence." />
+    <meta property="og:locale" content="en_US" />
+
     <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Shivangi Malviya | Market Discovery &amp; GTM Consultant" />
+    <meta
+      name="twitter:description"
+      content="Most GTM advice starts with assumptions. Mine starts with evidence." />
+    <meta name="twitter:image" content="https://shivangim.com/og.png" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!--
+      Structured data. Matters more than usual here: answer engines read this to
+      decide who to cite, and AEO is part of what the site sells.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://shivangim.com/#person",
+            "name": "Shivangi Malviya",
+            "jobTitle": "Market Discovery & GTM Consultant",
+            "email": "hello@shivangim.com",
+            "telephone": "+91-98066-47672",
+            "url": "https://shivangim.com/",
+            "image": "https://shivangim.com/og.png",
+            "sameAs": ["https://www.linkedin.com/in/shivangi-malviya1105"],
+            "knowsAbout": [
+              "Go-to-market strategy",
+              "Market discovery",
+              "ICP definition",
+              "Product positioning",
+              "Product management",
+              "Customer discovery",
+              "Launch strategy"
+            ]
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://shivangim.com/#service",
+            "name": "Shivangi Malviya, Market Discovery & GTM Consulting",
+            "description": "Evidence-led go-to-market consulting for early-stage teams: market discovery, ICP definition, positioning, launch strategy and a weekly operating rhythm.",
+            "provider": { "@id": "https://shivangim.com/#person" },
+            "url": "https://shivangim.com/",
+            "email": "hello@shivangim.com",
+            "image": "https://shivangim.com/og.png",
+            "areaServed": ["IN", "AE", "US"],
+            "serviceType": [
+              "Go-to-market strategy",
+              "Market discovery",
+              "Product positioning",
+              "Launch strategy",
+              "Fractional product and GTM leadership"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://shivangim.com/#website",
+            "url": "https://shivangim.com/",
+            "name": "Shivangi Malviya",
+            "publisher": { "@id": "https://shivangim.com/#person" },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://shivangim.com/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Why fractional instead of hiring full-time?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A senior product or GTM hire is a three-to-six month search and a large fixed cost, usually committed before you know which market you are actually serving. Fractional support gives you senior judgment, focus, and operating rhythm in weeks. You convert to a full-time hire once the direction is proven."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is this only for startups?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. The method works anywhere buying intent leaves a trace. Early-stage startups, growth-stage SaaS, D2C brands launching new products, manufacturers going direct, real estate projects, education businesses. The signal source changes. The approach does not."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How is this different from an agency?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "An agency executes a channel you have already chosen. This role sits upstream of that, between founder, product, marketing and sales: finding where demand already exists, deciding what to sell and to whom, then building the execution rhythm. The focus is product direction, packaging and positioning, not running ads or making content."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What happens after the first call?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "I come back with either a sprint scope, a launch plan, a fractional retainer proposal, or a clear reason why now is not the right time. Resume, case studies, and build samples are available for serious conversations."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
 
   <body>
