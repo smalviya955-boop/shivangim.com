@@ -85,9 +85,9 @@ export default function Home() {
       <Navbar />
       <main>
         <Story />
+        <OffersSection />
         <OperatingAreasSection />
         <ProcessSection />
-        <OffersSection />
         <ProofSection />
         <Testimonials />
         <Credentials />
