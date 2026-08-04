@@ -25,7 +25,7 @@ export function OperatingAreasSection() {
       <div className="container">
         <Reveal>
           <div className="section-label mb-5">
-            <span>Operating areas</span>
+            <span>What I help with</span>
           </div>
           <h2 className="text-3xl md:text-[2.6rem] font-bold text-charcoal max-w-2xl leading-[1.2]">
             The pain hides in a different place for every business.
@@ -111,10 +111,10 @@ export function ProcessSection() {
       <div className="container">
         <Reveal>
           <div className="section-label mb-5">
-            <span>Process</span>
+            <span>The Signal Method</span>
           </div>
           <h2 className="text-3xl md:text-[2.6rem] font-bold text-charcoal max-w-3xl leading-[1.2]">
-            A fractional rhythm built for execution, not for decks.
+            Six steps, and every one produces something you can check.
           </h2>
         </Reveal>
 
@@ -322,7 +322,7 @@ export function ProofSection() {
         <Reveal delay={80}>
           <p className="mt-8 text-sm text-warm-gray max-w-2xl leading-relaxed">
             Each case study walks through where the client was, what signal I found, what I built,
-            and what changed — with references available if you want to hear it from them.
+            and what changed. References available if you want to hear it from them.
           </p>
         </Reveal>
       </div>
