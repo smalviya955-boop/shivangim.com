@@ -9,7 +9,7 @@ export default function Footer() {
         <div>
           <span className="font-semibold text-foreground">Shivangi Malviya</span>
           {" | "}
-          <span>Product &amp; GTM Strategy Consultant</span>
+          <span>Market Discovery &amp; GTM Consultant</span>
         </div>
         <div>
           Madhya Pradesh and Central India
